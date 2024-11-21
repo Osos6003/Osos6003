@@ -1,1 +1,11 @@
-p
+mkdir -p $PREFIX/var/lib/postgresql
+initdb $PREFIX/var/lib/postgresql
+pg_ctl -D $PREFIX/var/lib/postgresql start
+createuser --superuser postgres
+psql -U postgres -d postgres 
+ALTER USER postgres WITH PASSWORD 'final111';
+CREATE DATABASE aljoker OWNER postgres;
+\q
+pg_ctl -D $PREFIX/var/lib/postgresql status
+  
+cd $PREFIX/var/lib/postgresql
